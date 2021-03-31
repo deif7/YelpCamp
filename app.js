@@ -105,6 +105,10 @@ app.use ('/campgrounds/:id/reviews', reviewRoutes);
 app.get('/', (req, res)=>{
     res.render('home')
 })
+app.get('*', function (req, res) {
+    const index = path.join(__dirname, 'build', 'index.html');
+    res.sendFile(index);
+  });
 
 app.all('*',(req,res,next)=>{
    next(new ExpressError('Page not found', 404));
